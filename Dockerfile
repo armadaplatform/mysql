@@ -1,16 +1,15 @@
-FROM microservice_php
+FROM dockyard.armada.sh/microservice_php
 MAINTAINER Cerebro <cerebro@ganymede.eu>, based on https://github.com/docker-library/mysql/
 
-ENV MYSQL_APT_GET_UPDATE_DATE 2017-06-16
-ENV MYSQL_VERSION=5.7.17
+ENV MYSQL_APT_GET_UPDATE_DATE 2021-02-12
+ENV MYSQL_VERSION=5.7.33
 
-RUN wget http://downloads.mysql.com/archives/get/file/mysql-server_${MYSQL_VERSION}-1ubuntu${DISTRIB_RELEASE}_amd64.deb -O /tmp/server.deb && \
-    wget http://downloads.mysql.com/archives/get/file/mysql-community-server_${MYSQL_VERSION}-1ubuntu${DISTRIB_RELEASE}_amd64.deb -O /tmp/community_server.deb && \
-    wget http://downloads.mysql.com/archives/get/file/mysql-common_${MYSQL_VERSION}-1ubuntu${DISTRIB_RELEASE}_amd64.deb -O /tmp/common.deb && \
-    wget http://downloads.mysql.com/archives/get/file/mysql-client_${MYSQL_VERSION}-1ubuntu${DISTRIB_RELEASE}_amd64.deb -O /tmp/client.deb && \
-    wget http://downloads.mysql.com/archives/get/file/mysql-community-client_${MYSQL_VERSION}-1ubuntu${DISTRIB_RELEASE}_amd64.deb -O /tmp/community_client.deb
+RUN wget https://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-server_${MYSQL_VERSION}-1ubuntu${DISTRIB_RELEASE}_amd64.deb -O /tmp/server.deb && \
+    wget https://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-community-server_${MYSQL_VERSION}-1ubuntu${DISTRIB_RELEASE}_amd64.deb -O /tmp/community_server.deb && \
+    wget https://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-common_${MYSQL_VERSION}-1ubuntu${DISTRIB_RELEASE}_amd64.deb -O /tmp/common.deb && \
+    wget https://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-client_${MYSQL_VERSION}-1ubuntu${DISTRIB_RELEASE}_amd64.deb -O /tmp/client.deb && \
+    wget https://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-community-client_${MYSQL_VERSION}-1ubuntu${DISTRIB_RELEASE}_amd64.deb -O /tmp/community_client.deb
 
-RUN LC_ALL=C.UTF-8 add-apt-repository -y ppa:nijel/phpmyadmin
 RUN apt-get update
 RUN apt-get install -y libaio1 libaio-dev libmecab2 apparmor libnuma1
 
